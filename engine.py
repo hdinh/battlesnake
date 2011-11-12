@@ -28,3 +28,6 @@ class Engine:
         else:
             self.begin_timer()
 
+    def get_moves(self):
+        """Wait for each actor to respond"""
+        pass

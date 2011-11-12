@@ -24,5 +24,4 @@ class Pill(GameObject):
         pass
 
     def handle_tick(self):
-        print('tick')
         pass

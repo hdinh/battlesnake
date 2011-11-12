@@ -8,35 +8,37 @@ from headbanger import HeadBanger
 from pill import Pill
 from fruit import Fruit
 
+from qtboard import QtBoard
 
 class Snake(Game):
     def __init__(self, game_options=None):
-        self.agents = []
-        self.agents.append(Score())
-        self.agents.append(Board())
-        self.agents.append(Worm())
-        self.agents.append(Mushroom())
-        self.agents.append(Scull())
-        self.agents.append(HeadBanger())
-        self.agents.append(Pill())
-        self.agents.append(Fruit())
+        self.actors = []
+        self.actors.append(Score())
+        #self.actors.append(Board())
+        self.actors.append(QtBoard())
+        self.actors.append(Worm())
+        self.actors.append(Mushroom())
+        self.actors.append(Scull())
+        self.actors.append(HeadBanger())
+        self.actors.append(Pill())
+        self.actors.append(Fruit())
 
     def init(self):
-        for agent in self.agents:
-            agent.init()
+        for actor in self.actors:
+            actor.init()
 
     def finish(self):
-        for agent in self.agents:
-            agent.finish()
+        for actor in self.actors:
+            actor.finish()
 
     def init_game(self):
-        for agent in self.agents:
-            agent.init_game()
+        for actor in self.actors:
+            actor.init_game()
 
     def finish_game(self):
-        for agent in self.agents:
-            agent.finish_game()
+        for actor in self.actors:
+            actor.finish_game()
 
     def handle_tick(self):
-        for agent in self.agents:
-            agent.handle_tick()
+        for actor in self.actors:
+            actor.handle_tick()
