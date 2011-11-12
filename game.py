@@ -24,13 +24,16 @@ class SnakeGame:
         self.agents.push(Fruit())
 
     def init()
-        pass
+        for agent in self.agents:
+            agent.init()
 
     def finish()
-        pass
+        for agent in self.agents:
+            agent.finish()
 
     def handle_tick(self):
-        pass
+        for agent in self.agents:
+            agent.handle_tick()
 
 def run(game):
     pass
