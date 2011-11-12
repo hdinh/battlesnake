@@ -11,9 +11,12 @@ class Snake:
         print('cool')
 
 def main():
-    s = Snake()
+    s = SnakeGame()
     s.init()
+
+    s.main_loop()
+
+    s.finish()
 
 if __name__ == '__main__':
     main()
-

@@ -1,0 +1,2 @@
+class Scull:
+    pass
