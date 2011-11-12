@@ -1,7 +1,4 @@
-"""
-I imagine this guy will the business logic for the game.
-"""
-
+from game import Game
 from score import Score
 from board import Board
 from worm import Worm
@@ -12,7 +9,7 @@ from pill import Pill
 from fruit import Fruit
 
 
-class Snake:
+class Snake(Game):
     def __init__(self, game_options=None):
         self.agents = []
         self.agents.append(Score())
