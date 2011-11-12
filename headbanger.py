@@ -1,5 +1,6 @@
 from game_object import GameObject
 
+
 class HeadBanger(GameObject):
     def __init__(self):
         pass

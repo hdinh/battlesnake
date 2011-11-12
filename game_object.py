@@ -21,4 +21,4 @@ class GameObject:
         pass
 
     def handle_tick():
-        pass 
+        pass

@@ -1,5 +1,6 @@
 from game_object import GameObject
 
+
 class Board(GameObject):
     def __init__(self):
         pass
