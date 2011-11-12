@@ -1,0 +1,7 @@
+Logic for board. Look at both the ai-tools (which may be more efficient) and the snake4 (which may be more what we need for snake)
+Then about object-board interaction
+Still not 100% sure where the states are resolved. If everybody takes a turn, who is the guy who decides the final state of each move?
+Think about where to put the AI logic
+Think about the REST interface?
+Maybe start adding the QT visualizer (just to learn PySide)
+Maybe a console visualizer (just to play with interactive consoles)
