@@ -1,4 +1,7 @@
-class Scull:
+from game_object import GameObject
+
+
+class Scull(GameObject):
     def __init__(self):
         pass
 

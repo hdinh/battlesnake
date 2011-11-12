@@ -23,13 +23,21 @@ class SnakeGame:
         self.agents.push(Pill())
         self.agents.push(Fruit())
 
-    def init()
+    def init(self):
         for agent in self.agents:
             agent.init()
 
-    def finish()
+    def finish(self):
         for agent in self.agents:
             agent.finish()
+
+    def init_game(self):
+        for agent in self.agents:
+            agent.init_game()
+
+    def finish_game(self):
+        for agent in self.agents:
+            agent.finish_game()
 
     def handle_tick(self):
         for agent in self.agents:

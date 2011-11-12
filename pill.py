@@ -1,4 +1,6 @@
-class Pill:
+from game_object import GameObject
+
+class Pill(GameObject):
     def __init__(self):
         pass
 
