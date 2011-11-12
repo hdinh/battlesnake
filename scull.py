@@ -23,5 +23,5 @@ class Scull(GameObject):
     def finish_round(self):
         pass
 
-    def handle_tick()
+    def handle_tick():
         pass

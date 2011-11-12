@@ -11,17 +11,18 @@ from headbanger import HeadBanger
 from pill import Pill
 from fruit import Fruit
 
-class SnakeGame:
-    def __init__(self, game_options):
+
+class Snake:
+    def __init__(self, game_options=None):
         self.agents = []
-        self.agents.score(Score())
-        self.agents.push(Board())
-        self.agents.push(Worm())
-        self.agents.push(Mushroom())
-        self.agents.push(Scull())
-        self.agents.push(HeadBanger())
-        self.agents.push(Pill())
-        self.agents.push(Fruit())
+        self.agents.append(Score())
+        self.agents.append(Board())
+        self.agents.append(Worm())
+        self.agents.append(Mushroom())
+        self.agents.append(Scull())
+        self.agents.append(HeadBanger())
+        self.agents.append(Pill())
+        self.agents.append(Fruit())
 
     def init(self):
         for agent in self.agents:
@@ -42,6 +43,3 @@ class SnakeGame:
     def handle_tick(self):
         for agent in self.agents:
             agent.handle_tick()
-
-def run(game):
-    pass

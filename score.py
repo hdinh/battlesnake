@@ -1,4 +1,7 @@
-class Score:
+from game_object import GameObject
+
+
+class Score(GameObject):
     def __init__(self):
         pass
 
@@ -20,5 +23,5 @@ class Score:
     def finish_round(self):
         pass
 
-    def handle_tick()
+    def handle_tick():
         pass

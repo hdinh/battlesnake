@@ -1,6 +1,4 @@
-from game_object import GameObject
-
-class Board(GameObject):
+class GameObject:
     def __init__(self):
         pass
 
@@ -23,4 +21,4 @@ class Board(GameObject):
         pass
 
     def handle_tick():
-        pass
+        pass 
