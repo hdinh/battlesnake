@@ -23,5 +23,6 @@ class Pill(GameObject):
     def finish_round(self):
         pass
 
-    def handle_tick():
+    def handle_tick(self):
+        print('tick')
         pass

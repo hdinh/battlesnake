@@ -10,3 +10,6 @@ class Game:
 
     def finish_game(self):
         pass
+
+    def handle_tick(self):
+        pass

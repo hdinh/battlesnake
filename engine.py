@@ -20,6 +20,11 @@ class Engine:
         timer.start()
 
     def game_handle_tick(self):
-        self.game.finish_game()
-        self.finished.set()
+        self.game.handle_tick()
+
+        if self.game.game_over():
+            self.game.finish_game()
+            self.finished.set()
+        else:
+            self.begin_timer()
 
