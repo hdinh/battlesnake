@@ -35,12 +35,14 @@ class QtSnakeWindow(QtGui.QWidget):
 
         self.board = board
 
-        self.setWindowTitle('Snake')
+        self.setWindowTitle('Battle Snake')
         self.resize(Board.BOARD_WIDTH * QtSnakeWindow.BLOCK_WIDTH,
                     Board.BOARD_HEIGHT * QtSnakeWindow.BLOCK_HEIGHT)
+        #print("(%s, %s)" % (Board.BOARD_WIDTH * QtSnakeWindow.BLOCK_WIDTH, Board.BOARD_HEIGHT * QtSnakeWindow.BLOCK_HEIGHT))
+
 
         self.timer = QtCore.QBasicTimer()
-        self.timer.start(10, self)
+        self.timer.start(1000 / 20, self)
 
     def paintEvent(self, event):
         super(QtSnakeWindow, self).paintEvent(event)
@@ -52,12 +54,15 @@ class QtSnakeWindow(QtGui.QWidget):
             for j in range(Board.BOARD_HEIGHT):
                 piece = self.board.board[(i * Board.BOARD_HEIGHT) + j]
                 if piece is not board.Snake_None:
-                    print('...drawing...')
+                    #print('...drawing...')
                     color = QtGui.QColor(SnakeColors[piece])
                     self.drawTail(painter, i, j, color, None)
 
     def timerEvent(self, event):
         super(QtSnakeWindow, self).timerEvent(event)
+
+        # Hack?
+        self.repaint()
 
     def keyPressEvent(self, event):
         key = event.key()
@@ -73,8 +78,11 @@ class QtSnakeWindow(QtGui.QWidget):
             super(QtSnakeWindow, self).keyPressEvent(event)
 
     def drawTail(self, painter, x, y, color, shape):
-        painter.fillRect(x,
-                         y,
+        xx = x * QtSnakeWindow.BLOCK_WIDTH
+        yy = y * QtSnakeWindow.BLOCK_HEIGHT
+        #print('d = (%s, %s) - (%s, %s)' % (x, y, xx, yy))
+        painter.fillRect(xx,
+                         yy,
                          QtSnakeWindow.BLOCK_WIDTH,
                          QtSnakeWindow.BLOCK_HEIGHT,
                          color)
@@ -109,17 +117,17 @@ class QtBoard(Board):
 
     def handle_tick(self):
         self.handle_turn()
-        self.board[(self.x * Board.BOARD_WIDTH) + self.y] = board.Snake_None
+        self.board[(self.x * Board.BOARD_HEIGHT) + self.y] = board.Snake_None
         if self.dec_x:
             self.x = self.x - 1
         elif self.inc_x:
             self.x = self.x + 1
         elif self.inc_y:
-            self.x = self.y + 1
+            self.y = self.y + 1
         elif self.dec_y:
-            self.x = self.y - 1
-        self.board[(self.x * Board.BOARD_WIDTH) + self.y] = board.Snake_P1
-        print("(%s, %s)" % (self.x, self.y))
+            self.y = self.y - 1
+        self.board[(self.x * Board.BOARD_HEIGHT) + self.y] = board.Snake_P1
+        #print("(%s, %s)" % (self.x, self.y))
 
     def handle_turn(self):
         self.inc_x, self.inc_y, self.dec_x, self.dec_y = [False] * 4
