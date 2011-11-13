@@ -6,11 +6,11 @@ from Queue import Queue
 
 
 SnakeColors = {
-    board.Snake_None: 0x000000,
-    board.Snake_P1:   0xff0000,
-    board.Snake_P2:   0x00ff00,
-    board.Snake_P3:   0x0000ff,
-    board.Snake_P4:   0x00ffff
+    board.Snake_None: QtGui.QColor(0x000000),
+    board.Snake_P1:   QtGui.QColor(0xff0000),
+    board.Snake_P2:   QtGui.QColor(0x00ff00),
+    board.Snake_P3:   QtGui.QColor(0x0000ff),
+    board.Snake_P4:   QtGui.QColor(0x00ffff)
 }
 
 
@@ -38,8 +38,6 @@ class QtSnakeWindow(QtGui.QWidget):
         self.setWindowTitle('Battle Snake')
         self.resize(Board.BOARD_WIDTH * QtSnakeWindow.BLOCK_WIDTH,
                     Board.BOARD_HEIGHT * QtSnakeWindow.BLOCK_HEIGHT)
-        #print("(%s, %s)" % (Board.BOARD_WIDTH * QtSnakeWindow.BLOCK_WIDTH, Board.BOARD_HEIGHT * QtSnakeWindow.BLOCK_HEIGHT))
-
 
         self.timer = QtCore.QBasicTimer()
         self.timer.start(1000 / 20, self)
@@ -52,10 +50,14 @@ class QtSnakeWindow(QtGui.QWidget):
 
         for i in range(Board.BOARD_WIDTH):
             for j in range(Board.BOARD_HEIGHT):
-                piece = self.board.board[(i * Board.BOARD_HEIGHT) + j]
-                if piece is not board.Snake_None:
+                #import pdb; pdb.set_trace()
+                piece = self.board.get_object_at(i, j)
+                if piece is not None:
                     #print('...drawing...')
-                    color = QtGui.QColor(SnakeColors[piece])
+                    #color = SnakeColors[piece]
+                    color = QtGui.QColor(0x000000)
+                    if hasattr(piece, 'color'):
+                        color = piece.color
                     self.drawTail(painter, i, j, color, None)
 
     def timerEvent(self, event):
@@ -78,11 +80,8 @@ class QtSnakeWindow(QtGui.QWidget):
             super(QtSnakeWindow, self).keyPressEvent(event)
 
     def drawTail(self, painter, x, y, color, shape):
-        xx = x * QtSnakeWindow.BLOCK_WIDTH
-        yy = y * QtSnakeWindow.BLOCK_HEIGHT
-        #print('d = (%s, %s) - (%s, %s)' % (x, y, xx, yy))
-        painter.fillRect(xx,
-                         yy,
+        painter.fillRect(x * QtSnakeWindow.BLOCK_WIDTH,
+                         y * QtSnakeWindow.BLOCK_HEIGHT,
                          QtSnakeWindow.BLOCK_WIDTH,
                          QtSnakeWindow.BLOCK_HEIGHT,
                          color)
@@ -90,11 +89,14 @@ class QtSnakeWindow(QtGui.QWidget):
 
 
 class QtBoard(Board):
-    def __init__(self):
-        Board.__init__(self)
+    def __init__(self, board_actor):
+        Board.__init__(self, board_actor)
+
         self.inc_x, self.inc_y, self.dec_x, self.dec_y = [False] * 4
-        self.x = 10
-        self.y = 10
+        self.snake = self.new_object()
+        self.snake.x = 0
+        self.snake.y = 0
+        self.snake.color = QtGui.QColor(0xff0000)
 
     def init(self):
         self.key_buffer = Queue(10)
@@ -117,16 +119,16 @@ class QtBoard(Board):
 
     def handle_tick(self):
         self.handle_turn()
-        self.board[(self.x * Board.BOARD_HEIGHT) + self.y] = board.Snake_None
+        #self.board[(self.x * Board.BOARD_HEIGHT) + self.y] = board.Snake_None
         if self.dec_x:
-            self.x = self.x - 1
+            self.snake.x -= 1
         elif self.inc_x:
-            self.x = self.x + 1
+            self.snake.x += 1
         elif self.inc_y:
-            self.y = self.y + 1
+            self.snake.y += 1
         elif self.dec_y:
-            self.y = self.y - 1
-        self.board[(self.x * Board.BOARD_HEIGHT) + self.y] = board.Snake_P1
+            self.snake.y -= 1
+        #self.board[(self.x * Board.BOARD_HEIGHT) + self.y] = board.Snake_P1
         #print("(%s, %s)" % (self.x, self.y))
 
     def handle_turn(self):
@@ -138,9 +140,9 @@ class QtBoard(Board):
             elif key == board.Snake_GoRight:
                 self.inc_x = True
             elif key == board.Snake_GoUp:
-                self.inc_y = True
-            elif key == board.Snake_GoDown:
                 self.dec_y = True
+            elif key == board.Snake_GoDown:
+                self.inc_y = True
 
     def putKey(self, direction):
         self.key_buffer.put(direction)

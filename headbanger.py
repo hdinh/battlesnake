@@ -1,9 +1,9 @@
-from game_object import GameObject
+from game_actor import GameActor
 
 
-class HeadBanger(GameObject):
-    def __init__(self):
-        pass
+class HeadBanger(GameActor):
+    def __init__(self, global_actor):
+        GameActor.__init__(self, global_actor)
 
     def init(self):
         pass

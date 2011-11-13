@@ -16,7 +16,7 @@ class Engine:
         self.game_handle_tick()
 
     def begin_timer(self):
-        timer = threading.Timer(0.2, self._timer_process)
+        timer = threading.Timer(1.0 / 40, self._timer_process)
         timer.start()
 
     def game_handle_tick(self):

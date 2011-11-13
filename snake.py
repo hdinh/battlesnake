@@ -7,21 +7,25 @@ from scull import Scull
 from headbanger import HeadBanger
 from pill import Pill
 from fruit import Fruit
+from game_actor import GameActor
 
 from qtboard import QtBoard
 
+
 class Snake(Game):
     def __init__(self, game_options=None):
+        global_actor = GameActor()
+
         self.actors = []
-        self.actors.append(Score())
+        self.actors.append(Score(global_actor))
         #self.actors.append(Board())
-        self.actors.append(QtBoard())
-        self.actors.append(Worm())
-        self.actors.append(Mushroom())
-        self.actors.append(Scull())
-        self.actors.append(HeadBanger())
-        self.actors.append(Pill())
-        self.actors.append(Fruit())
+        self.actors.append(QtBoard(global_actor))
+        self.actors.append(Worm(global_actor))
+        self.actors.append(Mushroom(global_actor))
+        self.actors.append(Scull(global_actor))
+        self.actors.append(HeadBanger(global_actor))
+        self.actors.append(Pill(global_actor))
+        self.actors.append(Fruit(global_actor))
 
     def init(self):
         for actor in self.actors:

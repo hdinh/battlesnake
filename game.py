@@ -14,12 +14,13 @@ class Game:
     def handle_tick(self):
         pass
 
-
     # Experimental
-    orders = [] # for each player in round
     def do_moves(self, player, move):
+        orders = []
         self.validate_order(player, move)
+
     def validate_order(self, player, move):
         pass
+
     def do_orders(self, player, move):
         pass

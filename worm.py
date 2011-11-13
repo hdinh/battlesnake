@@ -1,12 +1,9 @@
-"""
-I imagine this guy will be a OO abstraction for the snake
-"""
-from game_object import GameObject
+from game_actor import GameActor
 
 
-class Worm(GameObject):
-    def __init__(self):
-        pass
+class Worm(GameActor):
+    def __init__(self, global_actor):
+        GameActor.__init__(self, global_actor)
 
     def init(self):
         pass
