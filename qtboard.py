@@ -5,7 +5,6 @@ from PySide import QtCore, QtGui
 
 class QtGuiThread(threading.Thread):
     def __init__(self):
-        #self.app = app
         threading.Thread.__init__(self)
 
     def run(self):
@@ -16,7 +15,47 @@ class QtGuiThread(threading.Thread):
 
 
 class QtSnakeWindow(QtGui.QWidget):
-    pass
+    def __init__(self):
+        super(QtSnakeWindow, self).__init__()
+
+        self.setWindowTitle('Snake')
+        self.resize(550, 550)
+
+        self.timer = QtCore.QBasicTimer()
+        self.timer.start(1000, self)
+
+    def paintEvent(self, event):
+        super(QtSnakeWindow, self).paintEvent(event)
+
+        painter = QtGui.QPainter(self)
+        rect = self.contentsRect()
+        #self.painter.drawText(rect, QtCore.Qt.AlignCenter, "Fart")
+
+        for i in range(Board.BOARDWIDTH):
+            for j in range(Board.BOARDHEIGHT):
+                self.drawTail(painter, 20, 20, None)
+
+    def timerEvent(self, event):
+        pass
+
+    def keyPressEvent(self, event):
+        key = event.key()
+        if key == QtCore.Qt.Key_Left:
+            pass
+        elif key == QtCore.Qt.Key_Right:
+            pass
+        elif key == QtCore.Qt.Key_Down:
+            pass
+        elif key == QtCore.Qt.Key_Up:
+            pass
+        else:
+            super(QtSnakeWindow, self).keyPressEvent(event)
+
+    def drawTail(self, painter, x, y, shape):
+        color = QtGui.QColor(0xFF0000)
+        painter.fillRect(x + 1, y + 1, 10, 10, color)
+        painter.setPen(color.darker())
+        #painter.drawLine(x, y, 2, 2, color)
 
 
 class QtBoard(Board):
@@ -24,7 +63,7 @@ class QtBoard(Board):
         Board.__init__(self)
 
     def init(self):
-        print('tick')
+        print('init')
 
     def finish(self):
         pass

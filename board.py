@@ -1,12 +1,11 @@
 from game_object import GameObject
 
-BOARDWIDTH  = 92
-BOARDHEIGHT = 92
-
-
 class Board(GameObject):
+    BOARDWIDTH  = 92
+    BOARDHEIGHT = 92
+
     def __init__(self):
-        self.board = [[[None] * BOARDWIDTH] * BOARDHEIGHT]
+        self.board = [None] * (Board.BOARDWIDTH * Board.BOARDHEIGHT)
 
     def init(self):
         pass
