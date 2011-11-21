@@ -93,10 +93,6 @@ class QtBoard(Board):
         Board.__init__(self, board_actor)
 
         self.inc_x, self.inc_y, self.dec_x, self.dec_y = [False] * 4
-        self.snake = self.new_object()
-        self.snake.x = 0
-        self.snake.y = 0
-        self.snake.color = QtGui.QColor(0xff0000)
 
     def init(self):
         self.key_buffer = Queue(10)
@@ -118,31 +114,7 @@ class QtBoard(Board):
         pass
 
     def handle_tick(self):
-        self.handle_turn()
-        #self.board[(self.x * Board.BOARD_HEIGHT) + self.y] = board.Snake_None
-        if self.dec_x:
-            self.snake.x -= 1
-        elif self.inc_x:
-            self.snake.x += 1
-        elif self.inc_y:
-            self.snake.y += 1
-        elif self.dec_y:
-            self.snake.y -= 1
-        #self.board[(self.x * Board.BOARD_HEIGHT) + self.y] = board.Snake_P1
-        #print("(%s, %s)" % (self.x, self.y))
-
-    def handle_turn(self):
-        self.inc_x, self.inc_y, self.dec_x, self.dec_y = [False] * 4
-        key = self.getKey()
-        if key != None:
-            if key == board.Snake_GoLeft:
-                self.dec_x = True
-            elif key == board.Snake_GoRight:
-                self.inc_x = True
-            elif key == board.Snake_GoUp:
-                self.dec_y = True
-            elif key == board.Snake_GoDown:
-                self.inc_y = True
+        pass
 
     def putKey(self, direction):
         self.key_buffer.put(direction)

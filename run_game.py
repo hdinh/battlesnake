@@ -4,15 +4,14 @@ I imagine that this guy will expose a CLI for the game engine.
 And / or probably start the web server? I'm lending towards CLI
 """
 from engine import Engine
-from snake import Snake
-
+from battlesnake import BattleSnake
 
 def main():
     options = {
         "turntime": 100
     }
 
-    game = Snake()
+    game = BattleSnake()
     game.init()
 
     engine = Engine(game, options)
