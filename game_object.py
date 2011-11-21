@@ -3,3 +3,4 @@ class GameObject:
         self.x = None
         self.y = None
         self.active = False
+        self.type = None

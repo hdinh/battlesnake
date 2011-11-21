@@ -1,6 +1,7 @@
 import random
 from game_actor import GameActor
 from board import Board
+import game_types
 
 
 class Fruit(GameActor):
@@ -45,4 +46,5 @@ class Fruit(GameActor):
         obj = self.new_object()
         obj.x = random.randint(0, Board.BOARD_WIDTH)
         obj.y = random.randint(0, Board.BOARD_HEIGHT)
+        obj.type = game_types.Fruit
         self.activate_object(obj)

@@ -42,3 +42,6 @@ class GameActor:
             if go.x == x and go.y == y:
                 return go
         return None
+
+    def deactivate(self, obj):
+        self.objects.remove(obj)

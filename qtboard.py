@@ -5,15 +5,6 @@ from PySide import QtCore, QtGui
 from Queue import Queue
 
 
-SnakeColors = {
-    board.Snake_None: QtGui.QColor(0x000000),
-    board.Snake_P1:   QtGui.QColor(0xff0000),
-    board.Snake_P2:   QtGui.QColor(0x00ff00),
-    board.Snake_P3:   QtGui.QColor(0x0000ff),
-    board.Snake_P4:   QtGui.QColor(0x00ffff)
-}
-
-
 class QtGuiThread(threading.Thread):
     def __init__(self, board):
         threading.Thread.__init__(self)
@@ -53,11 +44,9 @@ class QtSnakeWindow(QtGui.QWidget):
                 #import pdb; pdb.set_trace()
                 piece = self.board.get_object_at(i, j)
                 if piece is not None:
-                    #print('...drawing...')
-                    #color = SnakeColors[piece]
                     color = QtGui.QColor(0x000000)
                     if hasattr(piece, 'color'):
-                        color = piece.color
+                        color = QtGui.QColor(piece.color)
                     self.drawTail(painter, i, j, color, None)
 
     def timerEvent(self, event):

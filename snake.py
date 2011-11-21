@@ -1,6 +1,7 @@
-from PySide import QtCore, QtGui
 from game_actor import GameActor
 import board
+from fruit import Fruit
+import game_types
 
 
 class Snake(GameActor):
@@ -18,7 +19,8 @@ class Snake(GameActor):
         self.snake = self.new_object()
         self.snake.x = 0
         self.snake.y = 0
-        self.snake.color = QtGui.QColor(0xff0000)
+        self.snake.type = game_types.Snake
+        self.snake.color = 0xff0000
 
     def finish_game(self):
         pass
@@ -31,17 +33,23 @@ class Snake(GameActor):
 
     def handle_tick(self):
         self.handle_turn()
-        #self.board[(self.x * Board.BOARD_HEIGHT) + self.y] = board.Snake_None
+        next_x = self.snake.x
+        next_y = self.snake.y
         if self.dec_x:
-            self.snake.x -= 1
+            next_x -= 1
         elif self.inc_x:
-            self.snake.x += 1
+            next_x += 1
         elif self.inc_y:
-            self.snake.y += 1
+            next_y += 1
         elif self.dec_y:
-            self.snake.y -= 1
-        #self.board[(self.x * Board.BOARD_HEIGHT) + self.y] = board.Snake_P1
-        #print("(%s, %s)" % (self.x, self.y))
+            next_y -= 1
+
+        obj = self.board.get_object_at(next_x, next_y)
+        if obj and obj.type == game_types.Fruit:
+            self.deactivate(obj)
+
+        self.snake.x = next_x
+        self.snake.y = next_y
 
     def handle_turn(self):
         self.inc_x, self.inc_y, self.dec_x, self.dec_y = [False] * 4
