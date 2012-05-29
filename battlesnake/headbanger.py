@@ -39,7 +39,8 @@ class HeadBanger(GameActor):
             return
 
         self.current_tick = 0
-        if self.num_headbangers < HeadBanger.MAX_HEADBANGERS and random.random() < .1:
+        under_max = self.num_headbangers < HeadBanger.MAX_HEADBANGERS
+        if under_max and random.random() < .1:
             self.num_headbangers += 1
             self._activate_headbanger()
 

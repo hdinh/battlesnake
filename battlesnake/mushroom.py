@@ -38,7 +38,8 @@ class Mushroom(GameActor):
             return
 
         self.current_tick = 0
-        if self.num_mushrooms < Mushroom.MAX_MUSHROOMS and random.random() < .1:
+        under_max = self.num_mushrooms < Mushroom.MAX_MUSHROOMS
+        if under_max and random.random() < .1:
             self.num_mushrooms += 1
             self._activate_mushroom()
 
