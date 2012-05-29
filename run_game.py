@@ -3,8 +3,8 @@
 I imagine that this guy will expose a CLI for the game engine.
 And / or probably start the web server? I'm lending towards CLI
 """
-from engine import Engine
 from battlesnake import BattleSnake
+from battlesnake.engine import Engine
 
 
 def main():
