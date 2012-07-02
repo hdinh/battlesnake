@@ -1,4 +1,4 @@
-class GameObject:
+class GameObject(object):
     def __init__(self):
         self.x = None
         self.y = None

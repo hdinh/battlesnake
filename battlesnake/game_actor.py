@@ -1,7 +1,7 @@
 from game_object import GameObject
 
 
-class GameActor:
+class GameActor(object):
     def __init__(self, global_actor=None):
         if global_actor != None:
             self.objects = global_actor.objects

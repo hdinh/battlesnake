@@ -1,7 +1,7 @@
 import threading
 
 
-class Engine:
+class Engine(object):
     def __init__(self, game, options):
         self.game = game
         self.options = options

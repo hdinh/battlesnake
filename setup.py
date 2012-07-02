@@ -15,13 +15,10 @@ setup(
     description=long_description,
     long_description=long_description,
     author='Hung Dinh',
-    #author_email='',
-    #url='',
     packages=find_packages(),
-    #test_suite='',
-    #tests_require=[],
-    #install_requires=[],
-    #entry_points={},
+    test_suite='nose.collector',
+    tests_require=['nose'],
+    install_requires=['PySide'],
     classifiers=[
     ],
 )
