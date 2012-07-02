@@ -5,8 +5,6 @@ import sys
 from setuptools import setup, find_packages
 
 
-readme = open('README').read()
-
 long_description = """Simple snake game using Qt."""
 
 setup(
@@ -18,7 +16,7 @@ setup(
     packages=find_packages(),
     test_suite='nose.collector',
     tests_require=['nose'],
-    install_requires=['PySide'],
+    #install_requires=['PySide'],
     classifiers=[
     ],
 )
